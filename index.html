@@ -49,11 +49,13 @@
     }
     .balloon {
       position: absolute;
-      width: 50px;
-      height: 70px;
+      width: 60px; /* Increased width */
+      height: 90px; /* Increased height */
       background: radial-gradient(circle at 50% 30%, #ff6f61, #ff3d3d);
-      border-radius: 50% 50% 50% 50%;
+      border-radius: 50% 50% 60% 60%; /* Shape resembling a balloon */
+      opacity: 0; /* Hidden initially */
       animation: float 5s ease-in-out infinite;
+      box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2); /* Soft shadow to enhance the balloon look */
     }
     @keyframes float {
       0% {
@@ -83,6 +85,21 @@
       left: 90%;
       animation-delay: 4s;
     }
+    
+    /* Button Styling */
+    .playButton {
+      background-color: #ff6f61;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    .playButton:hover {
+      background-color: #ff3d3d;
+    }
   </style>
 </head>
 <body>
@@ -90,18 +107,27 @@
     <h1>From Osama</h1>
     <h1>Happy Birthday Muntaha!</h1>
     <p>Machli ko English me kehty hay</p>
-<p>🦈fish🦈</p>
+    <p>🦈fish🦈</p>
 
-<p>Ham apko karte hay bohot</p>
-<p>💯miss💯</p> 
+    <p>Ham apko karte hay bohot</p>
+    <p>😘miss😘</p> 
 
-<p>Hamse pehly koi or na kar dy</p>
-<p>🎉wish🎉</p> 
+    <p>Hamse pehly koi or na kar dy</p>
+    <p>🎉wish🎉</p> 
 
-<p>Is liye pehly hi kar rahy hay apko</p>
-<p>❤️wish❤️</p> 
+    <p>Is liye pehly hi kar rahy hay apko</p>
+    <p>❤️wish❤️</p> 
 
-<p>Happy Birthday 🍰🎂!</p>
+    <p>Happy Birthday 🍰🎂!</p>
+
+    <!-- Play Button -->
+    <button class="playButton" onclick="playSong()">Click Here</button>
+    
+    <!-- Audio Element -->
+    <audio id="birthdaySong">
+      <source src="https://drive.google.com/uc?export=download&id=1p6Dk_p9XJCAII68_AWfZzkFQ8maRHiRb" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
   </div>
   <div class="balloons">
     <div class="balloon"></div>
@@ -110,5 +136,23 @@
     <div class="balloon"></div>
     <div class="balloon"></div>
   </div>
+
+  <!-- JavaScript to play the song and start balloon animation -->
+  <script>
+    function playSong() {
+      const song = document.getElementById('birthdaySong');  // Get the audio element
+      const balloons = document.querySelectorAll('.balloon');  // Get all balloon elements
+      
+      // Play the song
+      song.play().catch(error => {
+        console.log("Autoplay blocked. User interaction needed.");
+      });
+
+      // Start balloon animation by making them visible
+      balloons.forEach(balloon => {
+        balloon.style.opacity = 1;
+      });
+    }
+  </script>
 </body>
 </html>
